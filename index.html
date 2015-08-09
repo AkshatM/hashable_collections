@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Hashable collections by AkshatM</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="header">Hashable collections</h1>
+        <p class="header">Hashable dictionaries and lists in Python, so that you can use them as keys in a dictionary.</p>
+
+        <ul>
+          <li class="download"><a class="buttons" href="https://github.com/AkshatM/hashable_collections/zipball/master">Download ZIP</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/AkshatM/hashable_collections/tarball/master">Download TAR</a></li>
+          <li><a class="buttons github" href="https://github.com/AkshatM/hashable_collections">View On GitHub</a></li>
+        </ul>
+
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/AkshatM">AkshatM</a></p>
+
+
+      </header>
+      <section>
+        <h1>
+<a id="about" class="anchor" href="#about" aria-hidden="true"><span class="octicon octicon-link"></span></a>About</h1>
+
+<p>This library enables dictionaries and lists to be used as keys inside a dictionary. In other words, it makes them hashable. </p>
+
+<p>While mutable objects (lists, dictionaries) should not be made hashable in general, the programmer is trusted not to abuse this power (you <em>do</em> test your code before shipping into production, don't you?). An extension option to explicitly make the resulting hashable object immutable is provided below for convenience.</p>
+
+<p>There are certain use cases - e.g. when trying to pass seemingly identical keys to <a href="https://networkx.github.io">NetworkX</a> as different nodes, or when you want to query an object's properties in place while making a mapping instead of calling a complicated identification function - where these may be useful and reduce boilerplate code.  </p>
+
+<h1>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h1>
+
+<pre><code>&gt;&gt;&gt; from hashable_collections import hashable_dict
+&gt;&gt;&gt; hashed_dict = hashable_dict({'name':'foo'})
+&gt;&gt;&gt; from hashable_collections import hashable_list
+&gt;&gt;&gt; hashed_list = hashable_list(['bar',1])
+&gt;&gt;&gt; output = {hashed_dict:0,hashed_list:1}
+&gt;&gt;&gt; output
+{{'name':'foo'}: 0, ['bar', 1]: 1}
+
+</code></pre>
+
+<p>These hashable objects still retain mutability - in other words, it is still possible to assign <code>hashed_dict['squiggle'] = 'squiggle'</code> and have it execute without an issue. The hash will change correspondingly, effectively making it a different object from before.</p>
+
+<p>Alternatively, one can subclass the objects defined here and override the <code>__setitem__</code> method to make sure the resulting hashable dictionary/list is immutable:</p>
+
+<pre><code>class immutable_hashable_dict(hashable_dict):
+
+    def __setitem__(self,key,value):
+        raise ValueError('Immutable hashable dicts do not let you change values inside your dictionary.')
+
+class immutable_hashable_list(hashable_list):
+
+    def __setitem__(self,key,value):
+        raise ValueError('Immutable hashable lists do not let you change valus inside your list.')
+
+</code></pre>
+
+<h1>
+<a id="caveats" class="anchor" href="#caveats" aria-hidden="true"><span class="octicon octicon-link"></span></a>Caveats</h1>
+
+<p>The following is a list of known issues that may crop up with this technology.</p>
+
+<ul>
+<li>   Creating a copy: If <code>s</code> is a <code>hashable_dict</code>, and one does <code>m = s</code> and then changes <code>m[0]</code>, the corresponding value of <code>s[0]</code> is changed as well. <strong>Never</strong> assign an existing hashable_dict or hashable_list to another object unless you are sure the second object is not going to change.</li>
+</ul>
+
+<h1>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h1>
+
+<p>Git clone and use where needed. In the future, this may be made available via pip.</p>
+      </section>
+      <footer>
+        <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+		
+  </body>
+</html>
