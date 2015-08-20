@@ -1,0 +1,7 @@
+MANIFEST.in
+README.rst
+setup.py
+hashable_collections.egg-info/PKG-INFO
+hashable_collections.egg-info/SOURCES.txt
+hashable_collections.egg-info/dependency_links.txt
+hashable_collections.egg-info/top_level.txt
