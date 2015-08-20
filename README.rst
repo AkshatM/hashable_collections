@@ -21,9 +21,9 @@ Usage
 
 ::
 
-    >>> from hashable_collections import hashable_dict
+    >>> from hashable_collections.hashable_collections import hashable_dict
     >>> hashed_dict = hashable_dict({'name':'foo'})
-    >>> from hashable_collections import hashable_list
+    >>> from hashable_collections.hashable_collections import hashable_list
     >>> hashed_list = hashable_list(['bar',1])
     >>> output = {hashed_dict:0,hashed_list:1}
     >>> output
@@ -65,5 +65,4 @@ technology.
 Installation
 ============
 
-Git clone and use where needed. In the future, this may be made
-available via pip.
+``pip install hashable_collections``
