@@ -1,6 +1,8 @@
 MANIFEST.in
 README.rst
 setup.py
+hashable_collections/__init__.py
+hashable_collections/hashable_collections.py
 hashable_collections.egg-info/PKG-INFO
 hashable_collections.egg-info/SOURCES.txt
 hashable_collections.egg-info/dependency_links.txt

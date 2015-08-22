@@ -15,7 +15,7 @@ setup(
     name="hashable_collections",
 
     # Version number (initial):
-    version="1.0",
+    version="1.1",
 
     # Application author details:
     author="Akshat Mahajan",
@@ -35,7 +35,7 @@ setup(
         "Intended Audience :: Information Technology",
         "Intended Audience :: Other Audience",
         "Intended Audience :: Science/Research",
-        "License :: OSI Approved :: MIT License"
+        "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
         "Programming Language :: Python",
         "Programming Language :: Python :: 2",
